@@ -5,15 +5,14 @@ from ella_series.models import Serie, SeriePart
 from ella.core.newman_admin import ListingInlineAdmin, PublishableAdmin
 
 
-class SeriePartInlineAdmin(newman.NewmanTabularInline):
-    model = SeriePart
-    extra = 5
-    raw_id_fields = ('publishable',)
+#class SeriePartInlineAdmin(newman.NewmanTabularInline):
+#    model = SeriePart
+#    extra = 5
+#    raw_id_fields = ('publishable',)
 
 
 class SerieAdmin(PublishableAdmin):
     list_filter = ('started', 'finished',)
-
 
     fieldsets = (
         (None, {'fields': ('title', 'slug', 'photo')}),
@@ -24,8 +23,7 @@ class SerieAdmin(PublishableAdmin):
     raw_id_fields = ('photo',)
     rich_text_fields = {None: ('description', 'text',)}
 
-    inlines = [ListingInlineAdmin, SeriePartInlineAdmin]
-
+    inlines = [ListingInlineAdmin]
 
 
 class SeriePartAdmin(newman.NewmanModelAdmin):

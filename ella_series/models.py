@@ -58,8 +58,8 @@ class SeriePartManager(models.Manager):
 
 class SeriePart(models.Model):
 
-    serie = CachedForeignKey(Serie, verbose_name=_('Serie'))
-    publishable = CachedForeignKey(Publishable, unique=True)
+    serie = CachedForeignKey(Serie, verbose_name=_('Serie'), related_name='serie_set')
+    publishable = CachedForeignKey(Publishable, unique=True, related_name='part_set')
     part_no = models.PositiveSmallIntegerField(_('Part no.'), default=1, editable=False)
 
     objects = SeriePartManager()

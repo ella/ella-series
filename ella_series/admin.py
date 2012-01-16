@@ -5,14 +5,14 @@ from ella_series.models import Serie, SeriePart
 from ella.core.admin import ListingInlineAdmin
 
 
-class SeriePartInlineAdmin(admin.TabularInline):
-    model = SeriePart
-    extra = 5
-    raw_id_fields = ('publishable',)
+#class SeriePartInlineAdmin(admin.TabularInline):
+#    model = SeriePart
+#    extra = 5
+#    raw_id_fields = ('publishable',)
 
 
 class SerieAdmin(admin.ModelAdmin):
-    list_display = ('title', 'photo_thumbnail', 'started', 'is_active', 'parts_count',)
+    list_display = ('title', 'started', 'is_active', 'parts_count',)
     list_filter = ('started', 'finished',)
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'description',)
@@ -26,7 +26,7 @@ class SerieAdmin(admin.ModelAdmin):
     raw_id_fields = ('photo',)
     rich_text_fields = {None: ('description',)}
 
-    inlines = [ListingInlineAdmin, SeriePartInlineAdmin]
+    inlines = [ListingInlineAdmin]
 
 
 class SeriePartAdmin(admin.ModelAdmin):
