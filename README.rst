@@ -23,7 +23,7 @@ Add ella_series your INSTALLED_APPS like this::
 	INSTALLED_APPS = (
 	    'ella.core',
 
-	    ... # ether ella apps
+	    ... # other ella apps
 
 	    'ella_series',
 	)
