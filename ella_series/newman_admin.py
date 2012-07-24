@@ -1,14 +1,8 @@
-from ella import newman
+import ella_newman
 from django.utils.translation import ugettext_lazy as _
 
 from ella_series.models import Serie, SeriePart
 from ella.core.newman_admin import ListingInlineAdmin, PublishableAdmin
-
-
-#class SeriePartInlineAdmin(newman.NewmanTabularInline):
-#    model = SeriePart
-#    extra = 5
-#    raw_id_fields = ('publishable',)
 
 
 class SerieAdmin(PublishableAdmin):
@@ -26,7 +20,7 @@ class SerieAdmin(PublishableAdmin):
     inlines = [ListingInlineAdmin]
 
 
-class SeriePartAdmin(newman.NewmanModelAdmin):
+class SeriePartAdmin(ella_newman.NewmanModelAdmin):
     # TODO: admin
     list_display = ('target_admin', 'serie', 'published',)
     raw_id_fields = ('publishable',)
@@ -37,7 +31,7 @@ class SeriePartAdmin(newman.NewmanModelAdmin):
     target_admin.short_description = _('Target')
 
 
-newman.site.register(Serie, SerieAdmin)
-newman.site.register(SeriePart, SeriePartAdmin)
+ella_newman.site.register(Serie, SerieAdmin)
+ella_newman.site.register(SeriePart, SeriePartAdmin)
 
 

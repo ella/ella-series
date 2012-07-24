@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from ella.core.models import Publishable
-from ella.core.cache.utils import CachedForeignKey, get_cached_list, get_cached_object
+from ella_two_ports.cache.utils import get_cached_list, get_cached_object
 
 
 class Serie(Publishable):
@@ -58,8 +58,8 @@ class SeriePartManager(models.Manager):
 
 class SeriePart(models.Model):
 
-    serie = CachedForeignKey(Serie, verbose_name=_('Serie'), related_name='serie_set')
-    publishable = CachedForeignKey(Publishable, unique=True, related_name='part_set')
+    serie = models.ForeignKey(Serie, verbose_name=_('Serie'), related_name='serie_set')
+    publishable = models.ForeignKey(Publishable, unique=True, related_name='part_set')
     part_no = models.PositiveSmallIntegerField(_('Part no.'), default=1, editable=False)
 
     objects = SeriePartManager()
